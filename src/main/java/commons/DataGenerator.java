@@ -2,7 +2,7 @@ package commons;
 
 import com.github.javafaker.Faker;
 
-public class dataGenerator {
+public class DataGenerator {
     private Faker faker;
     private String firstName;
     private String lastName;
@@ -14,8 +14,11 @@ public class dataGenerator {
     private String country;
     private String state;
     private String city;
+    private String university;
+    private String gender;
+    private String profile;
 
-    public dataGenerator() {
+    public DataGenerator() {
         this.faker = new Faker();
         this.setFirstName(faker.name().firstName());
         this.setLastName(faker.name().lastName());
@@ -27,6 +30,9 @@ public class dataGenerator {
         this.setCountry(faker.address().country());
         this.setState(faker.address().state());
         this.setCity(faker.address().city());
+        this.setUniversity(faker.university().name());
+        this.setGender(faker.pokemon().name());
+        this.setProfile(faker.company().name());
     }
 
     public String getFirstName() {
@@ -108,4 +114,29 @@ public class dataGenerator {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public String getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(String university) {
+        this.university = university;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
 }

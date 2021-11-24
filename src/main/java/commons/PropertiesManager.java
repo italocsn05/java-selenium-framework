@@ -3,7 +3,7 @@ package commons;
 import java.io.*;
 import java.util.Properties;
 
-public class propertiesManager {
+public class PropertiesManager {
 
     public static String getPropertiesValue(String key){
         Properties properties = new Properties();
