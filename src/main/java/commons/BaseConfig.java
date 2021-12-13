@@ -1,5 +1,6 @@
 package commons;
 
+import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -63,15 +64,23 @@ public class BaseConfig {
         }
     }
 
-    public static void browserScreenShot(String scenarioName){
-        String dateTime = new SimpleDateFormat("dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
-        String fileName = " " + dateTime + scenarioName;
+//    public static void browserScreenShot(String scenarioName){
+//        String dateTime = new SimpleDateFormat("dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
+//        String fileName = " " + dateTime + scenarioName;
+//
+//        File screenshoot = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
+//        try {
+//            FileUtils.copyFile(screenshoot, new File("test-output/Screenshot" + fileName + ".png"));
+//        } catch (IOException e) {
+//            System.out.println("Ocorreu um problema ao copiar o arquivo para a pasta!\n" + e.getMessage());
+//        }
+//    }
 
-        File screenshoot = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
-        try {
-            FileUtils.copyFile(screenshoot, new File("test-output/Screenshot" + fileName + ".png"));
-        } catch (IOException e) {
-            System.out.println("Ocorreu um problema ao copiar o arquivo para a pasta!\n" + e.getMessage());
-        }
+    public static void browserScreenShot(Scenario scenario){
+        String dateTime = new SimpleDateFormat("dd-MM-yyyy ").format(new Timestamp(System.currentTimeMillis()));
+        String fileName = " " + dateTime + scenario.getName();
+
+        byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenshot, "image/png", fileName + " " + scenario.getStatus() );
     }
 }
