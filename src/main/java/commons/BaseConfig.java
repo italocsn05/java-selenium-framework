@@ -25,30 +25,30 @@ public class BaseConfig {
     protected DataGenerator dataGenerator = new DataGenerator();
     protected PropertiesManager propertiesManager = new PropertiesManager();
 
-    public static void browserSettings(){
+    public static void browserSettings() {
         String browser = PropertiesManager.getPropertiesValue("browser");
 
-        if (browser.equalsIgnoreCase("Chrome")){
+        if (browser.equalsIgnoreCase("Chrome")) {
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
         }
 
-        if (browser.equalsIgnoreCase("Firefox")){
+        if (browser.equalsIgnoreCase("Firefox")) {
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
         }
 
-        if (browser.equalsIgnoreCase("Edge")){
+        if (browser.equalsIgnoreCase("Edge")) {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
         }
 
-        if (browser.equalsIgnoreCase("Opera")){
+        if (browser.equalsIgnoreCase("Opera")) {
             WebDriverManager.chromedriver().setup();
             webDriver = new OperaDriver();
         }
 
-        if (browser.equalsIgnoreCase("Explorer")){
+        if (browser.equalsIgnoreCase("Explorer")) {
             WebDriverManager.iedriver().setup();
             webDriver = new InternetExplorerDriver();
         }
@@ -58,29 +58,29 @@ public class BaseConfig {
         webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
     }
 
-    public static void browserTearDown(){
-        if (webDriver != null){
+    public static void browserTearDown() {
+        if (webDriver != null) {
             webDriver.quit();
         }
     }
 
-//    public static void browserScreenShot(String scenarioName){
-//        String dateTime = new SimpleDateFormat("dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
-//        String fileName = " " + dateTime + scenarioName;
-//
-//        File screenshoot = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
-//        try {
-//            FileUtils.copyFile(screenshoot, new File("test-output/Screenshot" + fileName + ".png"));
-//        } catch (IOException e) {
-//            System.out.println("Ocorreu um problema ao copiar o arquivo para a pasta!\n" + e.getMessage());
-//        }
-//    }
-
-    public static void browserScreenShot(Scenario scenario){
-        String dateTime = new SimpleDateFormat("dd-MM-yyyy ").format(new Timestamp(System.currentTimeMillis()));
-        String fileName = " " + dateTime + scenario.getName();
+    public static void browserScreenShotCucumberAttachReport(Scenario scenario) {
+        String dateTime = new SimpleDateFormat(" dd-MM-yyyy ").format(new Timestamp(System.currentTimeMillis()));
+        String fileName = "Test Case Name - " + scenario.getName() + " - Data da execução - " + dateTime + "- Status execução- " + scenario.getStatus();
 
         byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-        scenario.attach(screenshot, "image/png", fileName + " " + scenario.getStatus() );
+        scenario.attach(screenshot, "image/png", fileName);
+    }
+
+    public static void browserScreenShotSaveFile(Scenario scenario) {
+        String dateTime = new SimpleDateFormat("dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
+        String fileName = "Test Case Name - " + scenario.getName() + " - Data da execução - " + dateTime + "- Status execução- " + scenario.getStatus();
+
+        File screenshoot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(screenshoot, new File("test-output/" + fileName + ".png"));
+        } catch (IOException e) {
+            System.out.println("Ocorreu um problema ao copiar o arquivo para a pasta!\n" + e.getMessage());
+        }
     }
 }
