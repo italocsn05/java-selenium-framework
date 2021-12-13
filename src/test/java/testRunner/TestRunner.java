@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         monochrome = true,
+        dryRun = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         plugin = {"pretty", "html:target/cucumber.html"},
         features = {"src/test/resources/features"},

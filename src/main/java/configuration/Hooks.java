@@ -13,14 +13,10 @@ public class Hooks extends BaseConfig {
         browserSettings();
     }
 
-    @AfterStep()
-    public void afterWebStepScenario(Scenario scenario){
-        browserScreenShot(" " + scenario.getName() + "_(" + scenario.getStatus() + ")");
-    }
-
     @After(value = "@web")
     public void afterWebScenario(Scenario scenario){
         System.out.println("Hooks Web Execution Finished");
+        browserScreenShot(" " + scenario.getName() + "_(" + scenario.getStatus() + ")");
         browserTearDown();
     }
 }
