@@ -66,7 +66,7 @@ public class BaseConfig {
 
     public static void browserScreenShotCucumberAttachReport(Scenario scenario) {
         String dateTime = new SimpleDateFormat(" dd-MM-yyyy ").format(new Timestamp(System.currentTimeMillis()));
-        String fileName = "Test Case Name - " + scenario.getName() + " - Data da execução - " + dateTime + "- Status execução- " + scenario.getStatus();
+        String fileName = "Test Case Name - " + scenario.getName() + " - Data da execução - " + dateTime + " - Status execução - " + scenario.getStatus();
 
         byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
         scenario.attach(screenshot, "image/png", fileName);
@@ -74,7 +74,7 @@ public class BaseConfig {
 
     public static void browserScreenShotSaveFile(Scenario scenario) {
         String dateTime = new SimpleDateFormat("dd-MM-yyyy").format(new Timestamp(System.currentTimeMillis()));
-        String fileName = "Test Case Name - " + scenario.getName() + " - Data da execução - " + dateTime + "- Status execução- " + scenario.getStatus();
+        String fileName = "Test Case Name - " + scenario.getName() + " - Data da execução - " + dateTime + " - Status execução - " + scenario.getStatus();
 
         File screenshoot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
         try {
