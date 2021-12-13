@@ -2,9 +2,6 @@ package stepDefinitions;
 
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Então;
-import io.cucumber.java.pt.Quando;
-import web.pageActions.CriarUsuarioPageActions;
-import web.pageActions.HomePageActions;
 
 public class AutomacaoComBatistaStepDefinitions {
     private HomePageActions homePageActions;
