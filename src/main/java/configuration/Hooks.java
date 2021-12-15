@@ -1,9 +1,7 @@
 package configuration;
 
 import commons.BaseConfig;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
 
 public class Hooks extends BaseConfig {
     @Before(value = "@web")
@@ -14,8 +12,12 @@ public class Hooks extends BaseConfig {
 
     @After(value = "@web")
     public void afterWebScenario(Scenario scenario){
-        browserScreenShotCucumberAttachReport(scenario);
         browserScreenShotSaveFile(scenario);
         browserTearDown();
+    }
+
+    @AfterStep
+    public void afterStepWeb(Scenario scenario){
+        browserScreenShotCucumberAttachReport(scenario);
     }
 }
