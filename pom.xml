@@ -35,6 +35,13 @@
                     <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
                     <sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
                     <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
+                    <customParametersFile>src/main/resources/reporter.properties</customParametersFile>
+                    <logLevel>default</logLevel>
+                    <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
+                    <expandStepHooks>true</expandStepHooks>
+                    <expandDocStrings>true</expandDocStrings>
+                    <startPage>SCENARIO_SEQUENCE</startPage>
+                    <customPageTitle>Application Name - All Scenarios</customPageTitle>
                 </configuration>
             </plugin>
         </plugins>
